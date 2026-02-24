@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Application Tracker</title>
+    <link rel="shortcut icon" href="/assets/icon-2.png" type="image/x-icon" />
+    <!-- tailwind cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font-link start -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font-link end -->
+    <!-- fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body class="bg-[#F8FAFC]">
+    <!-- =================== Dashboard area start ===================== -->
+    <section class="dashboard lg:w-[80%] mx-auto">
+      <h1
+        class="text-2xl font-bold text-[#002C5C] py-3 text-center lg:text-left"
+      >
+        Job Application Tracker
+      </h1>
+      <div
+        class="dashboard-cards grid grid-cols-3 gap-2 lg:w-full w-[95%] mx-auto"
+      >
+        <div
+          class="dash-card-1 rounded-lg border border-[#F1F2F4] bg-[#FFF] lg:p-4 shadow-md p-2"
+        >
+          <h3 class="text-[16px] font-semibold">Total</h3>
+          <p id="totalCount" class="text-[20px] font-bold text-[#002C5C]">0</p>
+        </div>
+        <!-- interview count -->
+        <div
+          class="dash-card-1 rounded-lg border border-[#F1F2F4] bg-[#FFF] lg:p-4 shadow-md p-2"
+        >
+          <h3 class="text-[16px] font-semibold">Interview</h3>
+          <p id="interviewCount" class="text-[20px] font-bold text-green-500">
+            0
+          </p>
+        </div>
+        <!-- rejected count -->
+        <div
+          class="dash-card-1 rounded-lg border border-[#F1F2F4] bg-[#FFF] lg:p-4 shadow-md p-2"
+        >
+          <h3 class="text-[16px] font-semibold">Rejected</h3>
+          <p id="rejectedCount" class="text-[20px] font-bold text-red-500">0</p>
+        </div>
+      </div>
+    </section>
+    <!-- =================== Dashboard area end ===================== -->
+    <!-- =================== Available Jobs Section start ===================== -->
+    <section class="jobs-section lg:w-[80%] mx-auto">
+      <!-- jobs section-header start -->
+      <div
+        class="section-header flex justify-between items-center py-7 lg:w-full w-[95%] mx-auto"
+      >
+        <h2 class="text-[#002C5C] text-2xl font-semibold">Available Jobs</h2>
+        <h3 class="text-[#002C5C] text-[16px] font-bold">
+          <span id="tabCount">0</span> jobs
+        </h3>
+      </div>
+      <!-- jobs section-header end -->
+      <!-- jobs section-btn start -->
+      <div class="jobs-btn-area lg:w-full w-[95%] mx-auto">
+        <button
+          id="all-btn"
+          class="bg-[#3B82F6] text-white py-1 px-4 text-center rounded"
+        >
+          All
+        </button>
+
+        <button
+          id="interview-btn"
+          class="text-[#64748B] border border-[#F1F2F4] bg-[#FFF] py-1 px-4 text-center rounded"
+        >
+          Interview
+        </button>
+
+        <button
+          id="rejected-btn"
+          class="text-[#64748B] border border-[#F1F2F4] bg-[#FFF] py-1 px-4 text-center rounded"
+        >
+          Rejected
+        </button>
+      </div>
+      <!-- jobs section-btn end -->
+      <!-- all jobs Container start -->
+      <div
+        id="alljobsContainer"
+        class="jobs-container py-6 lg:w-full w-[95%] mx-auto space-y-4"
+      >
+        <!-- job card -01 start -->
+        <div
+          class="card-01 space-y-3 border border-[#F1F2F4] bg-[#FFF] shadow-md"
+          data-status="none"
+        >
+          <div
+            class="flex lg:justify-between flex-row lg:w-full w-[95%] mx-auto lg:items-start p-4"
+          >
+            <div class="card-titel space-y-2">
+              <h2 class="jobName text-[#002C5C] text-[18px] font-bold">
+                Mobile First Corp
+              </h2>
+              <p class="jobRole text-[#64748B] text-[16px]">
+                React Native Developer
+              </p>
+              <p class="jobSalary text-[#64748B] text-[16px]">
+                Remote Full-time $130,000 - $175,000
+              </p>
+              <button
+                class="status py-1 px-4 bg-[#EEF4FF] text-center rounded text-[#002C5C]"
+              >
+                Not Applied
+              </button>
+              <p class="notes text-[#323B49]">
+                Build cross-platform mobile applications using React Native.
+                Work on products used by millions of users worldwide.
+              </p>
+              <div class="card-btn">
+                <button
+                  class="interviewBtn border border-[#10B981] py-1 px-4 bg-[#FFF] text-center rounded text-[#10B981]"
+                >
+                  Interview
+                </button>
+                <button
+                  class="border rejectedBtn border-[#EF4444] py-1 px-4 bg-[#FFF] text-center rounded text-[#EF4444]"
+                >
+                  Rejected
+                </button>
+              </div>
+            </div>
+            <div class="remove-icon p-2">
+              <button
+                class="border border-[#F1F2F4] bg-[#FFF] rounded-full p-2"
+              >
+                <i class="fa-regular fa-trash-can text-[Gray]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- job card -01 end -->
+        <!-- job card -02 start -->
+        <div
+          class="card-01 space-y-3 border border-[#F1F2F4] bg-[#FFF] shadow-md"
+          data-status="none"
+        >
+          <div
+            class="flex lg:justify-between flex-row lg:w-full w-[95%] mx-auto lg:items-start p-4"
+          >
+            <div class="card-titel space-y-2">
+              <h2 class="jobName text-[#002C5C] text-[18px] font-bold">
+                WebFlow Agency
+              </h2>
+              <p class="jobRole text-[#64748B] text-[16px]">
+                Web Designer & Developer
+              </p>
+              <p class="jobSalary text-[#64748B] text-[16px]">
+                Los Angeles, CA • Part-time • $80,000 - $120,000
+              </p>
+              <button
+                class="status py-1 px-4 bg-[#EEF4FF] text-center rounded text-[#002C5C]"
+              >
+                Not Applied
+              </button>
+              <p class="notes text-[#323B49]">
+                Create stunning web experiences for high-profile clients. Must
+                have portfolio and experience with modern web design trends.
+              </p>
+              <div class="card-btn">
+                <button
+                  class="interviewBtn border border-[#10B981] py-1 px-4 bg-[#FFF] text-center rounded text-[#10B981]"
+                >
+                  Interview
+                </button>
+                <button
+                  class="border rejectedBtn border-[#EF4444] py-1 px-4 bg-[#FFF] text-center rounded text-[#EF4444]"
+                >
+                  Rejected
+                </button>
+              </div>
+            </div>
+            <div class="remove-icon p-2">
+              <button
+                class="border border-[#F1F2F4] bg-[#FFF] rounded-full p-2"
+              >
+                <i class="fa-regular fa-trash-can text-[Gray]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- job card -02 end -->
+        <!-- job card -03 start -->
+        <div
+          class="card-01 space-y-3 border border-[#F1F2F4] bg-[#FFF] shadow-md"
+          data-status="none"
+        >
+          <div
+            class="flex lg:justify-between flex-row lg:w-full w-[95%] mx-auto lg:items-start p-4"
+          >
+            <div class="card-titel space-y-2">
+              <h2 class="jobName text-[#002C5C] text-[18px] font-bold">
+                DataViz Solutions
+              </h2>
+              <p class="jobRole text-[#64748B] text-[16px]">
+                Data Visualization Specialist
+              </p>
+              <p class="jobSalary text-[#64748B] text-[16px]">
+                Boston, MA • Full-time • $125,000 - $165,000
+              </p>
+              <button
+                class="status py-1 px-4 bg-[#EEF4FF] text-center rounded text-[#002C5C]"
+              >
+                Not Applied
+              </button>
+              <p class="notes text-[#323B49]">
+                Transform complex data into compelling visualizations. Required
+                skills: D3.js, React, and strong analytical thinking.
+              </p>
+              <div class="card-btn">
+                <button
+                  class="interviewBtn border border-[#10B981] py-1 px-4 bg-[#FFF] text-center rounded text-[#10B981]"
+                >
+                  Interview
+                </button>
+                <button
+                  class="border rejectedBtn border-[#EF4444] py-1 px-4 bg-[#FFF] text-center rounded text-[#EF4444]"
+                >
+                  Rejected
+                </button>
+              </div>
+            </div>
+            <div class="remove-icon p-2">
+              <button
+                class="border border-[#F1F2F4] bg-[#FFF] rounded-full p-2"
+              >
+                <i class="fa-regular fa-trash-can text-[Gray]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- job card -03 end -->
+        <!-- job card -04 start -->
+        <div
+          class="card-01 space-y-3 border border-[#F1F2F4] bg-[#FFF] shadow-md"
+          data-status="none"
+        >
+          <div
+            class="flex lg:justify-between flex-row lg:w-full w-[95%] mx-auto lg:items-start p-4"
+          >
+            <div class="card-titel space-y-2">
+              <h2 class="jobName text-[#002C5C] text-[18px] font-bold">
+                CloudFirst Inc
+              </h2>
+              <p class="jobRole text-[#64748B] text-[16px]">
+                Backend Developer
+              </p>
+              <p class="jobSalary text-[#64748B] text-[16px]">
+                Seattle, WA • Full-time • $140,000 - $190,000
+              </p>
+              <button
+                class="status py-1 px-4 bg-[#EEF4FF] text-center rounded text-[#002C5C]"
+              >
+                Not Applied
+              </button>
+              <p class="notes text-[#323B49]">
+                Design and maintain scalable backend systems using Python and
+                AWS. Work with modern DevOps practices and cloud infrastructure.
+              </p>
+              <div class="card-btn">
+                <button
+                  class="interviewBtn border border-[#10B981] py-1 px-4 bg-[#FFF] text-center rounded text-[#10B981]"
+                >
+                  Interview
+                </button>
+                <button
+                  class="border rejectedBtn border-[#EF4444] py-1 px-4 bg-[#FFF] text-center rounded text-[#EF4444]"
+                >
+                  Rejected
+                </button>
+              </div>
+            </div>
+            <div class="remove-icon p-2">
+              <button
+                class="border border-[#F1F2F4] bg-[#FFF] rounded-full p-2"
+              >
+                <i class="fa-regular fa-trash-can text-[Gray]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- job card -04 end -->
+        <!-- job card -05 start -->
+        <div
+          class="card-01 space-y-3 border border-[#F1F2F4] bg-[#FFF] shadow-md"
+          data-status="none"
+        >
+          <div
+            class="flex lg:justify-between flex-row lg:w-full w-[95%] mx-auto lg:items-start p-4"
+          >
+            <div class="card-titel space-y-2">
+              <h2 class="jobName text-[#002C5C] text-[18px] font-bold">
+                Innovation Labs
+              </h2>
+              <p class="jobRole text-[#64748B] text-[16px]">UI/UX Engineer</p>
+              <p class="jobSalary text-[#64748B] text-[16px]">
+                Austin, TX • Full-time • $110,000 - $150,000
+              </p>
+              <button
+                class="status py-1 px-4 bg-[#EEF4FF] text-center rounded text-[#002C5C]"
+              >
+                Not Applied
+              </button>
+              <p class="notes text-[#323B49]">
+                Create beautiful and functional user interfaces for our suite of products. Strong design skills and frontend development expertise required.
+              </p>
+              <div class="card-btn">
+                <button
+                  class="interviewBtn border border-[#10B981] py-1 px-4 bg-[#FFF] text-center rounded text-[#10B981]"
+                >
+                  Interview
+                </button>
+                <button
+                  class="border rejectedBtn border-[#EF4444] py-1 px-4 bg-[#FFF] text-center rounded text-[#EF4444]"
+                >
+                  Rejected
+                </button>
+              </div>
+            </div>
+            <div class="remove-icon p-2">
+              <button
+                class="border border-[#F1F2F4] bg-[#FFF] rounded-full p-2"
+              >
+                <i class="fa-regular fa-trash-can text-[Gray]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- job card -05 end -->
+        <!-- job card -06 start -->
+        <div
+          class="card-01 space-y-3 border border-[#F1F2F4] bg-[#FFF] shadow-md"
+          data-status="none"
+        >
+          <div
+            class="flex lg:justify-between flex-row lg:w-full w-[95%] mx-auto lg:items-start p-4"
+          >
+            <div class="card-titel space-y-2">
+              <h2 class="jobName text-[#002C5C] text-[18px] font-bold">
+                StartupXYZ
+              </h2>
+              <p class="jobRole text-[#64748B] text-[16px]">
+                React Native Developer
+              </p>
+              <p class="jobSalary text-[#64748B] text-[16px]">
+                Remote Full-time $130,000 - $175,000
+              </p>
+              <button
+                class="status py-1 px-4 bg-[#EEF4FF] text-center rounded text-[#002C5C]"
+              >
+                Not Applied
+              </button>
+              <p class="notes text-[#323B49]">
+                Build cross-platform mobile applications using React Native.
+                Work on products used by millions of users worldwide.
+              </p>
+              <div class="card-btn">
+                <button
+                  class="interviewBtn border border-[#10B981] py-1 px-4 bg-[#FFF] text-center rounded text-[#10B981]"
+                >
+                  Interview
+                </button>
+                <button
+                  class="border rejectedBtn border-[#EF4444] py-1 px-4 bg-[#FFF] text-center rounded text-[#EF4444]"
+                >
+                  Rejected
+                </button>
+              </div>
+            </div>
+            <div class="remove-icon p-2">
+              <button
+                class="border border-[#F1F2F4] bg-[#FFF] rounded-full p-2"
+              >
+                <i class="fa-regular fa-trash-can text-[Gray]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- job card -06 end -->
+        <!-- job card -07 start -->
+        <div
+          class="card-01 space-y-3 border border-[#F1F2F4] bg-[#FFF] shadow-md"
+          data-status="none"
+        >
+          <div
+            class="flex lg:justify-between flex-row lg:w-full w-[95%] mx-auto lg:items-start p-4"
+          >
+            <div class="card-titel space-y-2">
+              <h2 class="jobName text-[#002C5C] text-[18px] font-bold">
+                TechCorp Industries
+              </h2>
+              <p class="jobRole text-[#64748B] text-[16px]">
+                Senior Frontend Developer
+              </p>
+              <p class="jobSalary text-[#64748B] text-[16px]">
+                Remote Full-time $130,000 - $175,000
+              </p>
+              <button
+                class="status py-1 px-4 bg-[#EEF4FF] text-center rounded text-[#002C5C]"
+              >
+                Not Applied
+              </button>
+              <p class="notes text-[#323B49]">
+                Build cross-platform mobile applications using React Native.
+                Work on products used by millions of users worldwide.
+              </p>
+              <div class="card-btn">
+                <button
+                  class="interviewBtn border border-[#10B981] py-1 px-4 bg-[#FFF] text-center rounded text-[#10B981]"
+                >
+                  Interview
+                </button>
+                <button
+                  class="border rejectedBtn border-[#EF4444] py-1 px-4 bg-[#FFF] text-center rounded text-[#EF4444]"
+                >
+                  Rejected
+                </button>
+              </div>
+            </div>
+            <div class="remove-icon p-2">
+              <button
+                class="border border-[#F1F2F4] bg-[#FFF] rounded-full p-2"
+              >
+                <i class="fa-regular fa-trash-can text-[Gray]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- job card -07 end -->
+        <!-- job card -08 start -->
+        <div
+          class="card-01 space-y-3 border border-[#F1F2F4] bg-[#FFF] shadow-md"
+          data-status="none"
+        >
+          <div
+            class="flex lg:justify-between flex-row lg:w-full w-[95%] mx-auto lg:items-start p-4"
+          >
+            <div class="card-titel space-y-2">
+              <h2 class="jobName text-[#002C5C] text-[18px] font-bold">
+               TechCorp Industries
+              </h2>
+              <p class="jobRole text-[#64748B] text-[16px]">
+                Full Stack Engineer
+              </p>
+              <p class="jobSalary text-[#64748B] text-[16px]">
+                Remote Full-time $130,000 - $175,000
+              </p>
+              <button
+                class="status py-1 px-4 bg-[#EEF4FF] text-center rounded text-[#002C5C]"
+              >
+                Not Applied
+              </button>
+              <p class="notes text-[#323B49]">
+                Build cross-platform mobile applications using React Native.
+                Work on products used by millions of users worldwide.
+              </p>
+              <div class="card-btn">
+                <button
+                  class="interviewBtn border border-[#10B981] py-1 px-4 bg-[#FFF] text-center rounded text-[#10B981]"
+                >
+                  Interview
+                </button>
+                <button
+                  class="border rejectedBtn border-[#EF4444] py-1 px-4 bg-[#FFF] text-center rounded text-[#EF4444]"
+                >
+                  Rejected
+                </button>
+              </div>
+            </div>
+            <div class="remove-icon p-2">
+              <button
+                class="border border-[#F1F2F4] bg-[#FFF] rounded-full p-2"
+              >
+                <i class="fa-regular fa-trash-can text-[Gray]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- job card -08 end -->
+      </div>
+      <!-- empty massage -->
+      <div class="text-center hidden" id="emptyMessage">
+        <!-- Icon -->
+        <div class="flex justify-center mb-6">
+          <div class="w-24 h-24 rounded-lg flex items-center justify-center">
+            <img src="assets/empty.png" alt="" />
+          </div>
+        </div>
+
+        <!-- Text -->
+        <h2 class="text-2xl font-semibold text-gray-800">No jobs Available</h2>
+        <p class="text-gray-500 mt-2">Please select jobs from All tab.</p>
+      </div>
+      <!-- all jobs Container end -->
+    </section>
+    <!-- =================== Available Jobs Section end ===================== -->
+    <script src="script.js"></script>
+  </body>
+</html>
